@@ -1,10 +1,8 @@
+/** @type {import('@tailwindcss/postcss').Config} */
 export default {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx,html}', // Modify if necessary to match your project structure
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
-
+};
