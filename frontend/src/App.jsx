@@ -3,6 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard.jsx"
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+import RoleBasedRoutes from "./utils/RoleBasedRoutes.jsx";
+import AdminSummary from "./components/dashboard/AdminSummary.jsx";
+import DepartmentList from "./components/departments/DepartmentList.jsx";
 
 function App() {
 
@@ -12,8 +16,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/admin-dashboard" />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
-        <Route path="/employee-dashboard" element={<EmployeeDashboard />}></Route>
+        <Route
+          path="/admin-dashboard"
+          element={
+            <PrivateRoutes>
+              <RoleBasedRoutes requiredRole={["admin"]}>
+                <AdminDashboard />
+              </RoleBasedRoutes>
+            </PrivateRoutes>
+          }
+        >
+          <Route index element={<AdminSummary/>}></Route>
+          <Route path="/admin-dashboard/departments" element={<DepartmentList/>}></Route>
+
+        </Route>
+        <Route
+          path="/employee-dashboard"
+          element={<EmployeeDashboard />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

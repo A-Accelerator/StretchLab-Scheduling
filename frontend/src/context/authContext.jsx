@@ -1,5 +1,5 @@
 import React, {useState, createContext, useContext, useEffect} from 'react'
-import axios from 'axios'
+import axios from 'axios';
 
 const userContext = createContext()
 
@@ -19,13 +19,16 @@ const AuthContext = ({children}) => {
                             "Authorization": `Bearer ${token}`
                         }
                     });
+                    console.log(response)
                     if (response.data.success) {
                         setUser(response.data.user);
                     }
                 } else { 
                     setUser(null)
+                    setLoading(false)
                 }
             } catch (error) {
+                console.log(error)
                 if (error.response && !error.response.data.error) {
                     setUser(null);
                 }
