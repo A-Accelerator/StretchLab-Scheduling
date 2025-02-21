@@ -1,14 +1,43 @@
 import "./index.css";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard.jsx"
+import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+import RoleBasedRoutes from "./utils/RoleBasedRoutes.jsx";
+import AdminSummary from "./components/dashboard/AdminSummary.jsx";
+import DepartmentList from "./components/departments/DepartmentList.jsx";
+import AddDepartment from "./components/departments/AddDepartment.jsx";
 
 function App() {
+
+  
   return (
-    <div>
-      <h1 className="underline text-gray-500 font-bold">Hello world!</h1>
-      {/* Test other colors to see if any work */}
-      <p className="text-blue-500">Blue test</p>
-      <p className="text-red-500">Red test</p>
-      <p className="text-black">Black test</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/admin-dashboard" />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/admin-dashboard"
+          element={
+            <PrivateRoutes>
+              <RoleBasedRoutes requiredRole={["admin"]}>
+                <AdminDashboard />
+              </RoleBasedRoutes>
+            </PrivateRoutes>
+          }
+        >
+          <Route index element={<AdminSummary/>}></Route>
+          <Route path="/admin-dashboard/departments" element={<DepartmentList/>}></Route>
+          <Route path="/admin-dashboard/add-department" element={<AddDepartment/>}></Route>
+
+        </Route>
+        <Route
+          path="/employee-dashboard"
+          element={<EmployeeDashboard />}
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
