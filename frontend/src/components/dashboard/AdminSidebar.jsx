@@ -17,15 +17,19 @@ const AdminSidebar = () => {
               isActive ? "bg-teal-500" : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
-            end
+          end
         >
           <FaTachometerAlt />
           <span>Dashboard</span>
         </NavLink>
 
         <NavLink
-          to="/admin-dashboard"
-          className="flex items-center space-x-4 block py-2.5 px-4 rounded"
+          to="/admin-dashboard/employees"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
         >
           <FaUsers />
           <span>Employees</span>
@@ -34,7 +38,11 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin-dashboard/departments"
           className={({ isActive }) =>
-              `${isActive ? "bg-teal-500" : " "} flex items-center space-x-4 block py-2.5 px-4 rounded`}>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
+        >
           <FaBuilding />
           <span>Departments</span>
         </NavLink>
