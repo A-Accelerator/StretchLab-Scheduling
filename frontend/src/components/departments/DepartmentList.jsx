@@ -4,9 +4,15 @@ import DataTable from "react-data-table-component";
 import { columns, DepartmentButtons } from "../../utils/DepartmentHelper";
 import axios from "axios";
 
+
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [depLoading, setDepLoading] = useState(false);
+  const onDepartmentDelete = (_id) => {
+    const data = departments.filter((dep) => dep._id !== _id);
+    setDepartments(data);
+    window.location.reload(); // workaround to refresh page for post deletion
+  }
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -30,7 +36,7 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id} />,
+            action: <DepartmentButtons _id={dep._id}  onDepartmentDelete={onDepartmentDelete}/>,
           }));
           
           setDepartments(data);
