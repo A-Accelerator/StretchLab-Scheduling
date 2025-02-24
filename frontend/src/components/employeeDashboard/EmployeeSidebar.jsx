@@ -1,8 +1,15 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { FaTachometerAlt, FaUsers, FaBuilding, FaCalendarAlt, FaMoneyBillWave, FaCogs } from 'react-icons/fa';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import {
+  FaTachometerAlt,
+  FaUsers,
+  FaBuilding,
+  FaCalendarAlt,
+  FaMoneyBillWave,
+  FaCogs,
+} from "react-icons/fa";
 
-const AdminSidebar = () => {
+const EmployeeSidebar = () => {
   return (
     <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
       <div className="bg-teal-600 h-12 flex items-center justify-center">
@@ -11,7 +18,7 @@ const AdminSidebar = () => {
 
       <div className="px-4">
         <NavLink
-          to="/admin-dashboard"
+          to="/employee-dashboard"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -24,19 +31,7 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/admin-dashboard/employees"
-          className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500" : " "
-            } flex items-center space-x-4 block py-2.5 px-4 rounded`
-          }
-        >
-          <FaUsers />
-          <span>Employees</span>
-        </NavLink>
-
-        <NavLink
-          to="/admin-dashboard/departments"
+          to="/employee-dashboard/profile"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -44,19 +39,23 @@ const AdminSidebar = () => {
           }
         >
           <FaBuilding />
-          <span>Departments</span>
+          <span>My Profile</span>
         </NavLink>
 
         <NavLink
-          to="/admin-dashboard"
-          className="flex items-center space-x-4 block py-2.5 px-4 rounded"
+          to="/employee-dashboard/leaves"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
         >
           <FaCalendarAlt />
           <span>Leave</span>
         </NavLink>
 
         <NavLink
-          to="/admin-dashboard/salary"
+          to="/employee-dashboard/salary"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -68,8 +67,12 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/admin-dashboard"
-          className="flex items-center space-x-4 block py-2.5 px-4 rounded"
+          to="/employee-dashboard/settings"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
         >
           <FaCogs />
           <span>Settings</span>
@@ -77,6 +80,6 @@ const AdminSidebar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default AdminSidebar
+export default EmployeeSidebar;

@@ -13,6 +13,8 @@ import EmployeeList from "./components/employee/EmployeeList.jsx";
 import Add from "./components/employee/Add.jsx";
 import EmployeeView from "./components/employee/EmployeeView.jsx";
 import EmployeeEdit from "./components/employee/EmployeeEdit.jsx";
+import SalaryList from "./components/salary/SalaryList.jsx";
+import EmployeeSummary from "./components/employeeDashboard/EmployeeSummary.jsx";
 
 function App() {
 
@@ -38,6 +40,10 @@ function App() {
             element={<DepartmentList />}
           ></Route>
           <Route
+            path="/admin-dashboard/salary"
+            element={<SalaryList />}
+          ></Route>
+          <Route
             path="/admin-dashboard/add-department"
             element={<AddDepartment />}
           ></Route>
@@ -59,10 +65,23 @@ function App() {
           ></Route>
           <Route path="/admin-dashboard/add-employee" element={<Add />}></Route>
         </Route>
+
         <Route
           path="/employee-dashboard"
-          element={<EmployeeDashboard />}
-        ></Route>
+          element={
+            <PrivateRoutes>
+              <RoleBasedRoutes requiredRole={["admin", "employee"]}>
+                <EmployeeDashboard />
+              </RoleBasedRoutes>
+            </PrivateRoutes>
+          }
+        >
+          <Route index element={<EmployeeSummary />}></Route>
+          <Route
+            path="/employee-dashboard/profile"
+            element={<DepartmentList />}
+          ></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

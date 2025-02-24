@@ -37,9 +37,9 @@ const addEmployee = async (req, res) => {
         //     console.log("test2345678")
         //     return res.status(400).json({message: "User already exists"})
         // }
-        console.log("test1")
+
         const hashPassword = await bcrypt.hash(password, 10)
-        console.log("test2")
+
         const newUser = new User({
             name: name, 
             email, 
@@ -48,7 +48,7 @@ const addEmployee = async (req, res) => {
             profileImage: req.file ? req.file.filename : "",
         })
         const savedUser = await newUser.save()
-        console.log("newUser:", newUser);
+
         const newEmployee = new Employee({
             userId: savedUser._id,
             name: name,
@@ -62,15 +62,14 @@ const addEmployee = async (req, res) => {
             password,
             role 
         })
-        console.log("test4")
-        console.log("employee", newEmployee);
+
 
         await newEmployee.save()
-        console.log("Employee saved:", newEmployee);
+
         return res.status(200).json({ success: true, message: "Employee Created" });
 
     } catch (error){
-        console.log("Error saving employee:", error);
+
         return res.status(500).json({ success: false, error: "Server error when adding employee" });
     }
 }

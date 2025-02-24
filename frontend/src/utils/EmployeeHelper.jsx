@@ -28,6 +28,31 @@ export const fetchDepartments = async () => {
     return departments
 };
 
+// employees for salary form 
+
+export const getEmployees = async (id) => {
+  let employees = null;
+  try {
+    const response = await axios.get("http://localhost:3000/api/employee/salary/${id}", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    console.log(response.data);
+    if (response.data.success) {
+      departments = response.data.departments;
+    }
+  } catch (error) {
+    if (error.response && !error.response.data.success) {
+      alert(error.response.data.error);
+    }
+  }
+
+  return departments;
+};
+
+
 export const columns = [
   {
     name: "S No",
