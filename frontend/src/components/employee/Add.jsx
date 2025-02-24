@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
     const [departments, setDepartments] = useState([]);
     const [formData, setFormData] = useState({});
-
+    const navigate = useNavigate();
 
   useEffect(() => {
     const getDepartments = async () => {
@@ -27,7 +28,6 @@ const Add = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const formDataObj = new FormData()
 
     Object.keys(formData).forEach((key) => {
@@ -96,7 +96,7 @@ const handleSubmit = async (e) => {
             </label>
             <input
               type="text"
-              name="employeeid"
+              name="employeeId"
               onChange={handleChange}
               placeholder="Employee ID"
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
