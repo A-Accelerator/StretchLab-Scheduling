@@ -16,8 +16,9 @@ import EmployeeEdit from "./components/employee/EmployeeEdit.jsx";
 import SalaryList from "./components/salary/SalaryList.jsx";
 import EmployeeSummary from "./components/employeeDashboard/EmployeeSummary.jsx";
 import EmployeeSalary from "./components/employeeDashboard/EmployeeSalary.jsx";
-import EmployeeLeave from "./components/employeeDashboard/EmployeeLeave.jsx";
+import LeaveList from "./components/employeeDashboard/leave/LeaveList.jsx";
 import EmployeeSettings from "./components/employeeDashboard/EmployeeSettings.jsx";
+import AddLeave from "./components/employeeDashboard/leave/AddLeave.jsx";
 
 function App() {
 
@@ -90,7 +91,11 @@ function App() {
           ></Route>
           <Route
             path="/employee-dashboard/leaves"
-            element={<EmployeeLeave />}
+            element={<LeaveList />}
+          ></Route>
+          <Route
+            path="/employee-dashboard/add-leave"
+            element={<AddLeave />}
           ></Route>
           <Route
             path="/employee-dashboard/settings"
