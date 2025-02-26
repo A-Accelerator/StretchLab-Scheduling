@@ -15,6 +15,9 @@ import EmployeeView from "./components/employee/EmployeeView.jsx";
 import EmployeeEdit from "./components/employee/EmployeeEdit.jsx";
 import SalaryList from "./components/salary/SalaryList.jsx";
 import EmployeeSummary from "./components/employeeDashboard/EmployeeSummary.jsx";
+import EmployeeSalary from "./components/employeeDashboard/EmployeeSalary.jsx";
+import EmployeeLeave from "./components/employeeDashboard/EmployeeLeave.jsx";
+import EmployeeSettings from "./components/employeeDashboard/EmployeeSettings.jsx";
 
 function App() {
 
@@ -78,8 +81,20 @@ function App() {
         >
           <Route index element={<EmployeeSummary />}></Route>
           <Route
-            path="/employee-dashboard/profile"
-            element={<DepartmentList />}
+            path="/employee-dashboard/profile/:id"
+            element={<EmployeeView />}
+          ></Route>
+          <Route
+            path="/employee-dashboard/salary"
+            element={<EmployeeSalary />}
+          ></Route>
+          <Route
+            path="/employee-dashboard/leaves"
+            element={<EmployeeLeave />}
+          ></Route>
+          <Route
+            path="/employee-dashboard/settings"
+            element={<EmployeeSettings />}
           ></Route>
         </Route>
       </Routes>

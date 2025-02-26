@@ -4,19 +4,21 @@ import { useAuth } from "../../context/authContext.jsx";
 
 const EmployeeSummary = () => {
   const { user } = useAuth();
-  return (
-    <div className="rounded flex bg-white">
-      <div
-        className={`text-3xl flex justify-center items-center bg-teal-600 text-white px-4`}
-      >
-        <FaUser />
+    return (
+      <div className="rounded-md gap-4 py-4 pl-3">
+        <div className="rounded flex bg-white">
+          <div
+            className={`text-3xl flex justify-center items-center bg-teal-600 text-white px-4`}
+          >
+            <FaUser />
+          </div>
+          <div className="pl-4 py-1">
+            <p className="text-lg font-semibold">Welcome Back</p>
+            <p className="text-xl font-bold">{user.name}</p>
+          </div>
+        </div>
       </div>
-      <div className="pl-4 py-1">
-        <p className="text-lg font-semibold">Welcome Back</p>
-        <p className="text-xl font-bold">{user.name}</p>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default EmployeeSummary;
