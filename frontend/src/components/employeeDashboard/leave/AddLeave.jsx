@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAuth } from "../../../context/authContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AddLeave = () => {
-  const handleChange = (e) => {};
+    const {user} = useAuth()
+
+    const [leave, setLeave] = useState({
+
+        userId: user._id,
+
+    })
+
+    const navigate = useNavigate()
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLeave((prevState) => ({...prevState, [name] : value}))
+    };
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+          const response = await axios.post(
+              `http://localhost:3000/api/leave/add`,
+            leave,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+
+          if (response.data.success) {
+            navigate('/employee-dashboard/leaves')
+          }
+        } catch (error) {
+          if (error.response && !error.response.data.success) {
+            alert(error.response.data.error);
+          }
+        }
+    }
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6">Request for Leave</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -59,7 +99,7 @@ const AddLeave = () => {
           type="submit"
           className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md"
         >
-          Add Salary
+          Add Leave
         </button>
       </form>
     </div>
