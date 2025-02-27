@@ -5,6 +5,7 @@ import authRouter from './routes/auth.js';
 import departmentRouter from './routes/department.js';
 import employeeRouter from './routes/employee.js';
 import leaveRouter from './routes/leave.js';
+import shiftRouter from './routes/shifts.js';
 import connectToDatabase from './db/db.js';
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/department', departmentRouter);
 app.use('/api/employee', employeeRouter);
 app.use('/api/leave', leaveRouter);
+app.use('/api/shifts', shiftRouter);
 
 
 app.listen(process.env.PORT || 3000, () => {

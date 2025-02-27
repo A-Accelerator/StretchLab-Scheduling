@@ -19,6 +19,8 @@ import EmployeeSalary from "./components/employeeDashboard/EmployeeSalary.jsx";
 import LeaveList from "./components/employeeDashboard/leave/LeaveList.jsx";
 import EmployeeSettings from "./components/employeeDashboard/EmployeeSettings.jsx";
 import AddLeave from "./components/employeeDashboard/leave/AddLeave.jsx";
+import ListShifts from "./components/shifts/ListShifts.jsx";
+import AddShift from "./components/shifts/AddShift.jsx";
 
 function App() {
 
@@ -68,6 +70,8 @@ function App() {
             element={<EmployeeEdit />}
           ></Route>
           <Route path="/admin-dashboard/add-employee" element={<Add />}></Route>
+          <Route path="/admin-dashboard/shifts" element={<ListShifts />}></Route>
+          <Route path="/admin-dashboard/add-shift" element={<AddShift />}></Route>
         </Route>
 
         <Route

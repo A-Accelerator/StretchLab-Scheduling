@@ -74,6 +74,17 @@ const AdminSidebar = () => {
           <FaCogs />
           <span>Settings</span>
         </NavLink>
+        <NavLink
+          to="/admin-dashboard/shifts"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
+        >
+          <FaCogs />
+          <span>Shifts</span>
+        </NavLink>
       </div>
     </div>
   );
